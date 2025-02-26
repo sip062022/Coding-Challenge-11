@@ -90,6 +90,26 @@ class Library { // creates class "Library"
             console.log("No copies available to borrow."); // otherwise say there are none available
           }
     }
+
+    returnBook(borrowerId, isbn) { // Task 5: add the returnBook method
+        const borrower = this.borrowers.find(x => x.borrowerId === borrowerId); // find borrower
+            if (!borrower) {
+                console.log("Borrower not found"); // message if borrowerId not found
+                return;
+            }
+    
+        const book = this.books.find(b => b.isbn === isbn); // find the book by ISBN
+            if (!book) {
+                console.log("Book not found"); // message that isbn wasn't found
+                return;
+            }
+    
+        book.updateCopies(1); // increases number of available copies by 1
+
+        borrower.returnBook(book); // removes the book from the borrower's list
+    
+        console.log("Book has been returned!");  // message that book has been returned
+    }
 }
 
 const library = new Library (); // creates new instance in library
@@ -104,3 +124,11 @@ library.listBooks(); // expected output: "Title: The Great Gatsby, Author: F. Sc
 library.lendBook(201, 123456); // lend this ISBN to this borrower ID
 console.log(book1.getDetails()); // expected output: "Title: The Great Gatsby. Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 3:"
 console.log(borrower1.borrowedBooks); // expected output: ["The Great Gatsby"]
+
+// Task 5: Implementing Book Returns //
+
+    // Added method returnBook to task 3's library class //
+
+library.returnBook(201, 123456); // returns this book for this borrwer ID
+console.log(book1.getDetails()); // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+console.log(borrower1.borrowedBooks); // Expected output: []
