@@ -33,12 +33,12 @@ class Borrower { // establishes class "Borrower"
     }
 
     borrowBook(book) { // adds method borrowBook
-        this.borrowedBooks.push(book.title); // adds the book to the borrowed books array
+        this.borrowedBooks.push(book); // adds the book to the borrowed books array
     }
 
     returnBook(book) { // adds method returnBook
-        const index = this.borrowedBooks.indexOf(book.title); // finds the book
-        if (index !== -1) { // finds matching book
+        const index = this.borrowedBooks.indexOf(book); // finds the book
+        if (index !== -1) { // finds matching book in the array
             this.borrowedBooks.splice(index, 1); // removes that matching book from the array
         }
     }
@@ -71,8 +71,8 @@ class Library { // creates class "Library"
 
     lendBook(borrowerId, isbn) { // TASK 4: adds lendBook method
         const borrower = this.borrowers.find(x => x.borrowerId === borrowerId); // Find borrower ID
-        if (!borrower) {
-            console.log("Borrower not found");
+        if (!borrower) { // if borrower is not found
+            console.log("Borrower not found"); // log borrower not found
             return;
           }
 
@@ -84,7 +84,7 @@ class Library { // creates class "Library"
 
         if (book.copies > 0) { // TASK 4: if there is at least 1 copy available
             book.updateCopies(-1); // reduce number of copies by 1
-            borrower.borrowBook(book); // 
+            borrower.borrowBook(book.title); // calls borrow book method
             console.log("Book has been borrowed!");  // log that book was borrowed successfully
           } else {
             console.log("No copies available to borrow."); // otherwise say there are none available
@@ -106,11 +106,13 @@ class Library { // creates class "Library"
     
         book.updateCopies(1); // increases number of available copies by 1
 
-        borrower.returnBook(book); // removes the book from the borrower's list
+        borrower.returnBook(book.title); // removes the book from the borrower's list
     
         console.log("Book has been returned!");  // message that book has been returned
     }
 }
+
+// Task 3: Test Data // 
 
 const library = new Library (); // creates new instance in library
 library.addBook(book1); // adds book 1 to the library
