@@ -70,7 +70,7 @@ class Library { // creates class "Library"
     }
 
     lendBook(borrowerId, isbn) { // TASK 4: adds lendBook method
-        const borrower = this.borrowers.find(x => x.borrowerId === borrowerId); // Find borrower ID
+        const borrower = this.borrowers.find(x => x.borrowerId === borrowerId); // Find borrower ID.
         if (!borrower) { // if borrower is not found
             console.log("Borrower not found"); // log borrower not found
             return;
