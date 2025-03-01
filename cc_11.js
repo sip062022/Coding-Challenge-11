@@ -1,3 +1,5 @@
+// NOTE: WHEN THE HTML PAGE FIRST LOADS, THE ARRAYS DO NOT POPULATE....BUT IF YOU REFRESH THE PAGE THEY WILL POPULATE //
+
 // Task 1: Creating a Book Class //
  
 class Book { // establish class "Book"
@@ -70,7 +72,7 @@ class Library { // creates class "Library"
     }
 
     lendBook(borrowerId, isbn) { // TASK 4: adds lendBook method
-        const borrower = this.borrowers.find(x => x.borrowerId === borrowerId); // Find borrower ID.
+        const borrower = this.borrowers.find(x => x.borrowerId === borrowerId); // Find borrower ID
         if (!borrower) { // if borrower is not found
             console.log("Borrower not found"); // log borrower not found
             return;
